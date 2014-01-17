@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+	<div class="text-center">
+		<div class="row-nomargin row" >    
+			<div class="col-lg-6">
+			<h1> Login Skeleton </h1>	
+			</div>		
+			<div class="col-lg-6 col-sm-12">
+				<div class="container">
+					<div class="jumbotron login">		
+					    <form class="form-signin" method="post" action="" id="form-signin">
+					    	{% csrf_token %}
+				         	<h2>Inicia sesi&oacute;n</h2>
+				         	<input name="usuario" type="text" style="" class="form-control " placeholder="Usuario" value="">  
+				         	<input name="password" type="password" class="form-control" placeholder="Clave" value="">  
+				        	<button name="submit" id="submit" value="" type="submit" class="btn btn-large btn-danger">		Ingresar
+				        	</button>
+				    	</form>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
