@@ -4,12 +4,24 @@ from django.utils import timezone
 
 class Alumno(models.Model):
     nombre = models.CharField(max_length=60, unique=True, db_index=True)
-    matricula = models.CharField(max_length=20, blank=True, unique=True, null=True)
+    matricula = models.CharField(max_length=20, unique=True)
     fecha = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
-        return self.nombre
+        return "%s %s" % (self.nombre, self.matricula)
     
     #replace with your app name
     class Meta:
         app_label = 'horarios'
+
+class AlumnosClase(models.Model):
+    usuario = models.ForeignKey('Alumno', related_name='clases')
+    clase = models.ForeignKey('Clase', related_name='alumnos')
+    
+    def __unicode__(self):
+        return "%s  %s" % (self.usuario.nombre,self.clase.id)
+    
+    #replace with your app name
+    class Meta:
+        app_label = 'horarios'
+        unique_together = ['usuario', 'clase']

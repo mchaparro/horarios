@@ -2,11 +2,12 @@
 from django.db import models
 from django.utils import timezone
 
-class Horarios(models.Model):
-    nombre = models.CharField(max_length=30, unique=True, db_index=True)
-    fecha = models.DateField(auto_now_add=False, null=False, default="")
+class Horario(models.Model):
+    hora = models.CharField(max_length=10)
+    verbose_name = models.CharField(max_length=50)
+    
     def __unicode__(self):
-        return self.nombre
+        return self.verbose_name
     
     #replace with your app name
     class Meta:

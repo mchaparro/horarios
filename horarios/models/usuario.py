@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 from django.utils import timezone
 
 class UsuariosManager(BaseUserManager):
-    def create_user(self, usuario, password, nombre,apellidos,email=""):
+    def create_user(self, usuario, password, nombre,apellidos="",email=""):
         """
         Creates and saves user with the given username and password.
         """
@@ -21,7 +21,7 @@ class UsuariosManager(BaseUserManager):
         usuario.save(using=self._db)
         return usuario
 
-    def create_superuser(self,usuario,password,nombre,apellidos,email=""):
+    def create_superuser(self,usuario,password,nombre,apellidos="",email=""):
         """
         Creates and saves a superuser with the given username
         """
@@ -32,10 +32,10 @@ class UsuariosManager(BaseUserManager):
         return usuario
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
-    usuario = models.CharField(max_length=15, unique=True, db_index=True)
+    usuario = models.CharField(max_length=30, unique=True, db_index=True)
     email = models.EmailField(max_length=50, blank=True, null=True)
     nombre = models.CharField(max_length=100)
-    apellidos = models.CharField(max_length=100)
+    apellidos = models.CharField(max_length=100,  blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     fecha_mod = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
