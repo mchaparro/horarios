@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 
 # change to your app name!
-from skeleton.models import *
+from horarios.models import *
 ##############################
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import UpdateView, CreateView

@@ -1,0 +1,70 @@
+.green-badge{
+	background-color:#246400;
+	color:#F4FFFF;
+}
+
+.blue-badge{
+	background-color:#1C6099;
+	color:#F4FFFF;
+}
+.red-badge{
+	background-color:#C23A33;
+	color:#F4FFFF;
+}
+
+.light-red{
+	color:#FD8282;
+}
+
+.light-green{
+	color:#9FD541;
+}
+
+.red{
+	color:#c43936;
+}
+.green{
+	color:#608c02;
+}
+
+.gold{
+	color:#c9872c;
+}
+.red-bg{
+	background-color:#c43936;
+}
+.green-bg{
+	background-color:#608c02;
+}
+
+.gold-bg{
+	background-color:#c9872c;
+}
+
+
+/* Seccion principal */
+
+.title-main-table{
+	margin-bottom:20px;
+	margin-top:-50px;
+	font-size:1.7em;
+	font-weight:bold;
+}
+
+.week-day-picker{
+	font-size:1.3em;
+	boder-top:0px !important;
+}
+
+.week-day-picker {
+	cursor:pointer;
+	boder-top:0px !important;
+}
+.week-day-picker td{
+	background-color:#eeeeee !important;
+}
+
+.week-day-picker td:hover{
+	background-color:#398BCE !important;
+	color:white;
+}

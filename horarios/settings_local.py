@@ -1,10 +1,10 @@
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql", 
-        'NAME': "skeleton",                   
+        'NAME': "horarios",                   
         'USER': "root",
         'PASSWORD': "root",
-        'HOST': "localhost",            
-        'PORT': "3306",
+        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+        'PORT': '8889',
     }
 }

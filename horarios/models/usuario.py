@@ -57,4 +57,4 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     
     #replace with your app name
     class Meta:
-        app_label = 'skeleton'
+        app_label = 'horarios'

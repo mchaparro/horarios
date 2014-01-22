@@ -1,5 +1,5 @@
 """
-Django settings for skeleton project.
+Django settings for horarios project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -22,7 +22,7 @@ MESSAGE_TAGS = {
 }
 
 #Se especifica el nombre del modelo custom de usuario
-AUTH_USER_MODEL = 'skeleton.Usuario'
+AUTH_USER_MODEL = 'horarios.Usuario'
 PROJECT_PATH = os.path.dirname(__file__)
 
 LOGIN_URL = '/login/'
@@ -44,11 +44,11 @@ INTERNAL_IPS = (
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql", 
-        'NAME': "skeleton",                   
+        'NAME': "tcv",                   
         'USER': "root",
         'PASSWORD': "root",
-        'HOST': "localhost",            
-        'PORT': "3306",
+        'HOST': '/Applications/MAMP/tmp/mysql/mysql.sock',
+        'PORT': '8889',
     }
 }
 
@@ -142,10 +142,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'skeleton.urls'
+ROOT_URLCONF = 'horarios.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'skeleton.wsgi.application'
+WSGI_APPLICATION = 'horarios.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -167,7 +167,7 @@ INSTALLED_APPS = [
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'django_extensions',
-    'skeleton', #change to your app name!
+    'horarios', #change to your app name!
     'south',
     
 ]
