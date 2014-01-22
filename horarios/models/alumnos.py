@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Alumno(models.Model):
     nombre = models.CharField(max_length=60, unique=True, db_index=True)
-    matricula = models.EmailField(max_length=20, blank=True, null=True)
+    matricula = models.CharField(max_length=20, blank=True, unique=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
