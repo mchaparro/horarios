@@ -76,3 +76,25 @@
 	font-weight:normal;
 	color:#c43936;
 }
+
+
+
+
+.horis td {
+  text-align: center;
+  vertical-align: central;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  width:100px;
+  
+
+}
+
+.hora table {
+	padding:0px;
+    margin:0px;
+    border-spacing: 0px;
+	
+	
+
+}
