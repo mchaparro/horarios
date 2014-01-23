@@ -29,7 +29,7 @@ def login_user(request):
                 login(request, user)
             return HttpResponseRedirect(next)
         
-    return render(request, 'login.html', {'usuarios': usuarios})
+    return render_to_response('login.html', context_instance=RequestContext(request))
 
 def logout_user(request):
   logout(request)

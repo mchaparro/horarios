@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^$', home, {}, name="home"),
     (r'^login/$', login_user, {}, 'user_login'),
     (r'^logout/$', logout_user, {}, 'user_logout'),
+    (r'^get/clases/$', get_clases_json, {}, 'get_clases_json'),
     (r'^admin/', include(admin.site.urls)),    
 )

@@ -7,9 +7,9 @@ import pytz
 from django.conf import settings
 
 @json_response 
-def list_cargos_usuario_json(request, usuarioID):
+def get_clases_json(request):
     try:
-        cargos = Cargo.objects.filter(usuario__id=usuarioID)
+        clases = Clase.objects.filter(fecha=usuarioID)
     except:
         cargos = ""
     json_data = []
