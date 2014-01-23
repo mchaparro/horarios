@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 urlpatterns = patterns('',
-    url(r'^$', login_required(TemplateView.as_view(template_name='home.html')), name="home"),
+    url(r'^$', home, {}, name="home"),
     (r'^login/$', login_user, {}, 'user_login'),
     (r'^logout/$', logout_user, {}, 'user_logout'),
     (r'^admin/', include(admin.site.urls)),    

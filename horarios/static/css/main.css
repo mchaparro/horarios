@@ -61,10 +61,18 @@
 	boder-top:0px !important;
 }
 .week-day-picker td{
+	font-weight:bold;
+	font-size:1.1em;
 	background-color:#eeeeee !important;
 }
 
 .week-day-picker td:hover{
-	background-color:#398BCE !important;
-	color:white;
+	background-color:#e0e0e0 !important;
+	/*color:#1C6099;*/
+}
+
+.week-day-picker td>div{
+	font-size:0.8em;
+	font-weight:normal;
+	color:#c43936;
 }

@@ -1,21 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_head %}
+	<script type="text/javascript" src="{% static "js/clases.js" %}"></script>
+{% endblock %}
 {% block content %}
-
 <div class="text-center col-lg-12">
-		<div class=" title-main-table">Please select a day of the week</div> 
-			<table class="week-day-picker table table-striped ">
+		<div class=" title-main-table">
+			 Horarios del 
+			 <span class="green">{{ semana_actual.0|date:"d" }}</span> al
+			 <span class="green">{{ semana_actual.6|date:"d" }}</span> de
+			 <span class="green">{{ semana_actual.0|date:"F \d\e\l Y" }}</span>
+		</div> 
+	    <table class="week-day-picker table table-striped ">
 				<tr>
-					<td>Monday</td>
-					<td>Tuesday</td>
-					<td>Wednesday</td>
-					<td>Thursday</td>
-					<td>Friday</td>
-					<td>Saturday</td>
-					<td>Sunday</td>
+				{% for dia in semana_actual %}
+					<td data-fecha="{{ dia|date:"d/m/y" }}" class="escoger-fecha" >{{ dia|date:"l" }}
+						<div>{{ dia|date:"d" }}</div>
+					</td>
+				{% endfor %}
 				</tr>
-			</table>
-		</div>
+	    </table>
+	    <div id="tabla-clases">
+	    	<h2>Tablita mil</h2>
+	    	<h1></h1>
+	    </div>
 </div>
 			
 {% endblock %}
