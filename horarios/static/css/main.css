@@ -80,12 +80,13 @@
 
 
 
-.horis td {
+.hora td {
   text-align: center;
   vertical-align: central;
   border: 1px solid #000;
   border-collapse: collapse;
   width:100px;
+  padding:5px;
   
 
 }
@@ -94,6 +95,7 @@
 	padding:0px;
     margin:0px;
     border-spacing: 0px;
+    width: 120% !important;
 	
 	
 
