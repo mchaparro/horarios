@@ -36,9 +36,9 @@ class Migration(DataMigration):
         orm.Salon.objects.get_or_create(nombre='BEIJING')
         orm.Salon.objects.get_or_create(nombre='VEGAS')
         orm.Salon.objects.get_or_create(nombre='LONDON')
-        orm.Salon.objects.get_or_create(nombre='NEW YORK')
+        orm.Salon.objects.get_or_create(nombre='NEWYORK')
         orm.Salon.objects.get_or_create(nombre='MIAMI')
-        orm.Salon.objects.get_or_create(nombre='BIG ROOM')
+        orm.Salon.objects.get_or_create(nombre='BIGROOM')
         
         orm.Grupo.objects.get_or_create(nombre='1B', verbose_name='BASICO 1')
         orm.Grupo.objects.get_or_create(nombre='2B', verbose_name='BASICO 2')
@@ -49,6 +49,7 @@ class Migration(DataMigration):
         orm.Grupo.objects.get_or_create(nombre='1A', verbose_name='AVANZADO 1')
         orm.Grupo.objects.get_or_create(nombre='2A', verbose_name='AVANZADO 2')
         orm.Grupo.objects.get_or_create(nombre='3A', verbose_name='AVANZADO 3')
+        orm.Grupo.objects.get_or_create(nombre='KIDS', verbose_name='KIDS')
         orm.Grupo.objects.get_or_create(nombre='FB', verbose_name='FRANCES BASICO')
         orm.Grupo.objects.get_or_create(nombre='FI', verbose_name='FRANCES INTERMEDIO')
         orm.Grupo.objects.get_or_create(nombre='FA', verbose_name='FRANCES AVANZADO')
@@ -581,7 +582,7 @@ class Migration(DataMigration):
         orm.Grupo.objects.all().delete()
         orm.Horario.objects.all().delete()
         orm.Salon.objects.all().delete()
-        
+
     models = {
         u'auth.group': {
             'Meta': {'object_name': 'Group'},
@@ -618,6 +619,7 @@ class Migration(DataMigration):
         },
         'horarios.clase': {
             'Meta': {'unique_together': "(['hora', 'salon', 'fecha'],)", 'object_name': 'Clase'},
+            'estatus': ('django.db.models.fields.CharField', [], {'default': "'activa'", 'max_length': '20'}),
             'fecha': ('django.db.models.fields.DateField', [], {}),
             'grupo': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Grupo']"}),
             'hora': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Horario']"}),
