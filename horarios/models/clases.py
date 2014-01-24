@@ -15,4 +15,9 @@ class Clase(models.Model):
     #replace with your app name
     class Meta:
         app_label = 'horarios'
-        unique_together = ['hora','salon','fecha']
+
+    def save(self, *args, **kwargs):
+        salon_en_uso = Clase.objects.filter(hora=self.hora,grupo=self.grupo,salon=self.salon,fecha=self.fecha,estatus='activa')
+        if salon_en_uso and self.estatus=='activa':
+            raise Exception('Ya existe una clase activa a esa hora y en ese salon, si deseas cambiar la clase de hora es necesario cancelar la clase actual')
+        super(Clase, self).save(*args, **kwargs)

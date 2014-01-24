@@ -140,7 +140,7 @@
 .MIAMI{
 	background-color:#CDC5D3;
 }
-.KIDS{
+.KIDSROOM{
 	background-color:#FDD500;
 }
 .BEIJING{
@@ -179,3 +179,14 @@
 	border:2px solid black;
 }
 
+tr.grupos td{
+	width:180px !important;
+}
+
+.hora tr{
+	height:35px;
+}
+
+.tabla-admin{
+	width:85%;
+}

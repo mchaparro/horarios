@@ -16,21 +16,19 @@ def json2obj(data): return json.loads(data, object_hook=_json_object_hook)
 @json_response 
 def get_clases_json(request):
     try:
-        fecha = datetime.datetime.strptime(a, "%d/%m/%y").date()
+        fecha = datetime.datetime.strptime(request.POST['fecha'], "%d/%m/%y").date()
         clases = Clase.objects.filter(fecha=fecha)
     except:
-        cargos = ""
+        return {'error': 'no fue posible obtener las clases'}
+
     json_data = []
     
-    for cargo in cargos:
+    for clase in clases:
         json_data.append({
-                'cargo_id': str(cargo.id),
-                'taller': str(cargo.taller.nombre),
-                'taller_id': str(cargo.id),
-                'total': str(cargo.cantidad),
-                'adeudo': str(cargo.adeudo()),
-                'pagado': str(cargo.totalpagado)
-            })
+                'hora': clase.hora.hora,
+                'salon': clase.salon.nombre,
+                'grupo': clase.grupo.nombre
+            });
         
     return json_data
 
@@ -52,23 +50,16 @@ def update_clase_json(request):
             response[clase]='cancelada'
             
     for salon in salones:
-        salon = Salon.objects.get(nombre=salon)
+        try:
+            salon = Salon.objects.get(nombre=salon)
+        except:
+            response['error-salon']='El salon %s no existe' % salon
         try:
             clase = Clase.objects.get_or_create(fecha=fecha,salon=salon,grupo=grupo,hora=hora)[0]
             clase.estatus = 'activa'
             clase.save()
             response[clase]='activada'
         except:
-            pass
+            response['error al crear clase']='%s' % clase
     
-#     for cargo in cargos:
-#         json_data.append({
-#                 'cargo_id': str(cargo.id),
-#                 'taller': str(cargo.taller.nombre),
-#                 'taller_id': str(cargo.id),
-#                 'total': str(cargo.cantidad),
-#                 'adeudo': str(cargo.adeudo()),
-#                 'pagado': str(cargo.totalpagado)
-#             })
-#         
     return response

@@ -39,6 +39,7 @@ class Migration(DataMigration):
         orm.Salon.objects.get_or_create(nombre='NEWYORK')
         orm.Salon.objects.get_or_create(nombre='MIAMI')
         orm.Salon.objects.get_or_create(nombre='BIGROOM')
+        orm.Salon.objects.get_or_create(nombre='KIDSROOM')
         
         orm.Grupo.objects.get_or_create(nombre='1B', verbose_name='BASICO 1')
         orm.Grupo.objects.get_or_create(nombre='2B', verbose_name='BASICO 2')

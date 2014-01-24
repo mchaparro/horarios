@@ -5,9 +5,9 @@ $(document).ready(function(){
                                             
     });
     
-    salon = "";
+    salon = "PARIS";
     $('#saloncitos div').click(function(){
-        salon=$(this).attr('class');
+        salon=$(this).attr('data-salon');
         $('#saloncitos div').removeClass('salon-activo');
         $(this).toggleClass('salon-activo');
     });
