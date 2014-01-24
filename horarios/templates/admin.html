@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_head %}
-	<script type="text/javascript" src="{% static "js/clases.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/admin.js" %}"></script>
 	<script>
 		fecha = "{{ semana_actual.0|date:"d/m/y" }}"
 	</script>
@@ -14,6 +14,7 @@
 			 <span class="green">{{ semana_actual.6|date:"d" }}</span> de
 			 <span class="green">{{ semana_actual.0|date:"F \d\e\l Y" }}</span>
 		</div> 
+		<h1>admin</h1>
 	    <table class="week-day-picker table table-striped ">
 				<tr>
 				{% for dia in semana_actual %}
@@ -30,7 +31,7 @@
 	    </table>
 	    <div id="tabla-clases">
 	    	
-	    	
+<div class="pull-left">  	
 	<table align="center" border="2" class="hora " >
   	 <tbody>
      	<tr>
@@ -295,6 +296,21 @@
         
 	 </tbody>
 	 </table>
+</div>
+
+<div id="saloncitos" class="pull-right">
+	<h2>Salones</h2>
+	<div class="PARIS"><h5>PARIS</h5></div>
+	<div class="BIGROOM"><h5>BIGROOM</h5></div>
+	<div class="MIAMI"><h5>MIAMI</h></div>
+	<div class="LONDON"><h5>LONDON</h5></div>
+	<div class="VEGAS"><h5>VEGAS</h5></div>
+	<div class="BEIJING"><h5>BEIJING</h5></div>
+	<div class="NEWYORK"><h5>NEWYORK</h5></div>
+	<div class="DYNAMIC"><h5>DYNAMIC</h5></div>
+	<div class="KIDS"><h5>KIDSROOM</h5></div>
+
+</div>
      
 	    </div>
 </div>

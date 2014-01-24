@@ -38,3 +38,7 @@ def logout_user(request):
 @login_required 
 def home(request):
     return render(request, 'home.html', {'semana_actual': semana_actual()})
+
+@login_required 
+def administrador(request):
+    return render(request, 'admin.html', {'semana_actual': semana_actual()})

@@ -63,11 +63,11 @@
 .week-day-picker td{
 	font-weight:bold;
 	font-size:1.1em;
-	background-color:#eeeeee !important;
+	background-color:#eeeeee;
 }
 
 .week-day-picker td:hover{
-	background-color:#e0e0e0 !important;
+	background-color:#e0e0e0;
 	/*color:#1C6099;*/
 }
 
@@ -77,6 +77,10 @@
 	color:#c43936;
 }
 
+.activo{
+	background-color:#e0e0e0 !important;
+	
+}
 
 
 
@@ -118,7 +122,52 @@
 .LONDON{
 	background-color:green;
 }
+.NEWYORK{
+	background-color:purple;
+}
+.PARIS{
+	background-color:#FF57A6;
+}
+.VEGAS{
+	background-color:#c9872c;
+}
+.MIAMI{
+	background-color:#1F73F1!important;
+}
+.DYNAMIC{
+	background-color:#0EBCAF;
+}
+.MIAMI{
+	background-color:#CDC5D3;
+}
+.KIDS{
+	background-color:#FDD500;
+}
+.BEIJING{
+	background-color:#F83D0B;
+}
 
 .loading-gif{
 	position:absolute;
+}
+
+.clase{
+	cursor: pointer;	
+}
+
+#saloncitos{
+	margin-right:20px;
+	border-radius:15px; 
+	border:4px solid #cccccc;
+	padding:15px;
+	background-color:#eeeeee;
+	padding-top:5px;
+}
+#saloncitos div{
+	border-radius:7px;
+	padding:1px;
+	margin-top:1px;
+	margin-bottom:1px;
+	color:white;
+	font-size:0.9em;
 }
