@@ -97,8 +97,28 @@
     margin:0px;
     border-spacing: 0px;
     width: 120% !important;
-   
-	
-	
+}
 
+
+.odd{
+	background: #ccc;
+}
+
+.clase div{
+	border-radius:7px;
+	padding:1px;
+	margin-top:1px;
+	margin-bottom:1px;
+	color:white;
+	font-size:0.9em;
+}
+.BIGROOM{
+	background-color:red;
+}
+.LONDON{
+	background-color:green;
+}
+
+.loading-gif{
+	position:absolute;
 }
