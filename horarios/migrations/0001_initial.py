@@ -77,6 +77,7 @@ class Migration(SchemaMigration):
             ('grupo', self.gf('django.db.models.fields.related.ForeignKey')(related_name='clases', to=orm['horarios.Grupo'])),
             ('salon', self.gf('django.db.models.fields.related.ForeignKey')(related_name='clases', to=orm['horarios.Salon'])),
             ('fecha', self.gf('django.db.models.fields.DateField')()),
+            ('estatus', self.gf('django.db.models.fields.CharField')(default='activa', max_length=20)),
         ))
         db.send_create_signal('horarios', ['Clase'])
 
@@ -171,6 +172,7 @@ class Migration(SchemaMigration):
         },
         'horarios.clase': {
             'Meta': {'unique_together': "(['hora', 'salon', 'fecha'],)", 'object_name': 'Clase'},
+            'estatus': ('django.db.models.fields.CharField', [], {'default': "'activa'", 'max_length': '20'}),
             'fecha': ('django.db.models.fields.DateField', [], {}),
             'grupo': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Grupo']"}),
             'hora': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Horario']"}),
