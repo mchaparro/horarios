@@ -170,4 +170,12 @@
 	margin-bottom:1px;
 	color:white;
 	font-size:0.9em;
+	cursor: pointer;
 }
+#saloncitos div:hover{
+	border:2px solid black;
+}
+.salon-activo{
+	border:2px solid black;
+}
+

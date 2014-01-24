@@ -3,9 +3,14 @@ $(document).ready(function(){
         $('.week-day-picker td').removeClass('activo');
         $(this).toggleClass('activo');
                                             
-    })
+    });
     
-    salon = "BIGROOM";
+    salon = "";
+    $('#saloncitos div').click(function(){
+        salon=$(this).attr('class');
+        $('#saloncitos div').removeClass('salon-activo');
+        $(this).toggleClass('salon-activo');
+    });
     $("tr:odd").addClass("odd");
     
     $('.escoger-fecha').click(function(){
