@@ -190,3 +190,11 @@ tr.grupos td{
 .tabla-admin{
 	width:85%;
 }
+
+#loading{
+	display:none;
+	position:absolute;
+	margin-left:35%;
+	margin-top:100px;
+
+}
