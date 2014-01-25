@@ -11,11 +11,16 @@ function load_clases(fecha){
 			},
 			data: { 'fecha':fecha },
 			success: function(response) {
+				$.each(response, function(){
+				this.
+				var td=$('#')	
+				});				
 				console.log(response);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				//TODO Place proper error message 
 	       		//alert('sucedio un error al intentar actualizar la clase');
 	   		}  
+		
 		});
 }

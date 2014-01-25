@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	load_clases(fecha);
 	$('.week-day-picker td').click(function(){
 		$('.week-day-picker td').removeClass('activo');
 		$(this).toggleClass('activo');
