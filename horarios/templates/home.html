@@ -21,10 +21,11 @@
 					<td data-fecha="{{ dia|date:"d/m/y" }}" class="escoger-fecha activo" >{{ dia|date:"l" }}
 						<div>{{ dia|date:"d" }}</div>
 					</td>
-					{% endif %}
+					{% else %}
 					<td data-fecha="{{ dia|date:"d/m/y" }}" class="escoger-fecha" >{{ dia|date:"l" }}
 						<div>{{ dia|date:"d" }}</div>
 					</td>
+					{% endif %}
 				{% endfor %}
 				</tr>
 	    </table>
