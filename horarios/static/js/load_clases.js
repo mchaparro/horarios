@@ -13,7 +13,7 @@ function load_clases(fecha){
 			success: function(response) {
 				$.each(response, function(){
 				var td = $('.grupo-'+this.grupo+'-hora-'+this.hora);
-				td.append("<div class='" +this.salon+ "'>"+this.salon+" </div>");
+				td.append("<div data-id='saloncito' class='" +this.salon+ "'>"+this.salon+" </div>").remove;
 				console.log(td);
 				});				
 				console.log(response);
