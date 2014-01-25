@@ -15,13 +15,14 @@ class Alumno(models.Model):
         app_label = 'horarios'
 
 class AlumnosClase(models.Model):
-    usuario = models.ForeignKey('Alumno', related_name='clases')
+    alumno = models.ForeignKey('Alumno', related_name='clases')
     clase = models.ForeignKey('Clase', related_name='alumnos')
+    fecha = models.DateTimeField(auto_now_add=True)
     
     def __unicode__(self):
-        return "%s  %s" % (self.usuario.nombre,self.clase.id)
+        return "%s  %s" % (self.alumno.nombre,self.clase.id)
     
     #replace with your app name
     class Meta:
         app_label = 'horarios'
-        unique_together = ['usuario', 'clase']
+        unique_together = ['alumno', 'clase']

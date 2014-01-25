@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     (r'^get/clases/$', get_clases_json, {}, 'get_clases_json'),
     (r'^update/clase/$', update_clase_json, {}, 'update_clase_json'),
     (r'^administrador/$', administrador, {}, 'administrador'),  
+    (r'^alumnos/clase/(?P<claseID>\d+)/$', alumnos_clase, {}, 'alumnos_clase'),  
     (r'^admin/', include(admin.site.urls)),    
 )

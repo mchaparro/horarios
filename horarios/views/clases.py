@@ -17,20 +17,22 @@ def json2obj(data): return json.loads(data, object_hook=_json_object_hook)
 def get_clases_json(request):
     try:
         fecha = datetime.datetime.strptime(request.POST['fecha'], "%d/%m/%y").date()
-        clases = Clase.objects.filter(fecha=fecha)
+        clases = Clase.objects.filter(fecha=fecha, estatus='activa')
     except:
-        return {'error': 'no fue posible obtener las clases'}
+        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
 
-    json_data = []
+    lista_clases = []
     
     for clase in clases:
-        json_data.append({
-                'hora': clase.hora.hora,
-                'salon': clase.salon.nombre,
-                'grupo': clase.grupo.nombre
+        lista_clases.append({
+                'clase_id': str(clase.id),         
+                'hora': str(clase.hora.hora),
+                'salon': str(clase.salon.nombre),
+                'grupo': str(clase.grupo.nombre),
+                'cantidad_alumnos': str(clase.alumnos.all().count())
             });
         
-    return json_data
+    return lista_clases
 
 @json_response 
 def update_clase_json(request):
@@ -63,3 +65,24 @@ def update_clase_json(request):
             response['error al crear clase']='%s' % clase
     
     return response
+
+@json_response 
+def alumnos_clase(request, claseID):
+    try:
+        clase = Clase.objects.get(pk=claseID)
+    except:
+        return { 'error': 'error al acceder a la clase' }
+
+    lista_clases = []
+    alumnos = clase.alumnos.all()
+    for alumno in alumnos:
+        lista_clases.append({
+                'clase_id': str(clase.id),         
+                'alumno': str(alumno.alumno.nombre),
+                'alumno_id': str(alumno.alumno.id),
+                'matricula': str(alumno.alumno.matricula),
+                'cantidad_alumnos': str(clase.alumnos.all().count())
+            });
+        
+    return lista_clases
+

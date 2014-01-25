@@ -613,13 +613,13 @@ class Migration(DataMigration):
             'nombre': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '60', 'db_index': 'True'})
         },
         'horarios.alumnosclase': {
-            'Meta': {'unique_together': "(['usuario', 'clase'],)", 'object_name': 'AlumnosClase'},
+            'Meta': {'unique_together': "(['alumno', 'clase'],)", 'object_name': 'AlumnosClase'},
+            'alumno': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Alumno']"}),
             'clase': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'alumnos'", 'to': "orm['horarios.Clase']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'usuario': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Alumno']"})
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'horarios.clase': {
-            'Meta': {'unique_together': "(['hora', 'salon', 'fecha'],)", 'object_name': 'Clase'},
+            'Meta': {'object_name': 'Clase'},
             'estatus': ('django.db.models.fields.CharField', [], {'default': "'activa'", 'max_length': '20'}),
             'fecha': ('django.db.models.fields.DateField', [], {}),
             'grupo': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Grupo']"}),

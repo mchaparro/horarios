@@ -16,6 +16,7 @@ $(document).ready(function(){
     $('.escoger-fecha').click(function(){
         $('#tabla-clases h1').text($(this).attr('data-fecha'));
         fecha = $(this).attr('data-fecha');
+        load_clases(fecha);
     });
     
     

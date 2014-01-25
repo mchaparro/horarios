@@ -1,4 +1,4 @@
-function load_clases(){
+function load_clases(fecha){
 		$.ajax({
 			type:'POST',
 			url: '/get/clases/',
@@ -11,7 +11,7 @@ function load_clases(){
 			},
 			data: { 'fecha':fecha },
 			success: function(response) {
-				response = response;
+				console.log(response);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				//TODO Place proper error message 

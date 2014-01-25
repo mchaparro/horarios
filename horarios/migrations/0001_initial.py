@@ -55,13 +55,13 @@ class Migration(SchemaMigration):
         # Adding model 'AlumnosClase'
         db.create_table(u'horarios_alumnosclase', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('usuario', self.gf('django.db.models.fields.related.ForeignKey')(related_name='clases', to=orm['horarios.Alumno'])),
+            ('alumno', self.gf('django.db.models.fields.related.ForeignKey')(related_name='clases', to=orm['horarios.Alumno'])),
             ('clase', self.gf('django.db.models.fields.related.ForeignKey')(related_name='alumnos', to=orm['horarios.Clase'])),
         ))
         db.send_create_signal('horarios', ['AlumnosClase'])
 
-        # Adding unique constraint on 'AlumnosClase', fields ['usuario', 'clase']
-        db.create_unique(u'horarios_alumnosclase', ['usuario_id', 'clase_id'])
+        # Adding unique constraint on 'AlumnosClase', fields ['alumno', 'clase']
+        db.create_unique(u'horarios_alumnosclase', ['alumno_id', 'clase_id'])
 
         # Adding model 'Salon'
         db.create_table(u'horarios_salon', (
@@ -81,9 +81,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('horarios', ['Clase'])
 
-        # Adding unique constraint on 'Clase', fields ['hora', 'salon', 'fecha']
-        db.create_unique(u'horarios_clase', ['hora_id', 'salon_id', 'fecha'])
-
         # Adding model 'Grupo'
         db.create_table(u'horarios_grupo', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -102,11 +99,8 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        # Removing unique constraint on 'Clase', fields ['hora', 'salon', 'fecha']
-        db.delete_unique(u'horarios_clase', ['hora_id', 'salon_id', 'fecha'])
-
-        # Removing unique constraint on 'AlumnosClase', fields ['usuario', 'clase']
-        db.delete_unique(u'horarios_alumnosclase', ['usuario_id', 'clase_id'])
+        # Removing unique constraint on 'AlumnosClase', fields ['alumno', 'clase']
+        db.delete_unique(u'horarios_alumnosclase', ['alumno_id', 'clase_id'])
 
         # Deleting model 'Usuario'
         db.delete_table(u'horarios_usuario')
@@ -165,13 +159,13 @@ class Migration(SchemaMigration):
             'nombre': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '60', 'db_index': 'True'})
         },
         'horarios.alumnosclase': {
-            'Meta': {'unique_together': "(['usuario', 'clase'],)", 'object_name': 'AlumnosClase'},
+            'Meta': {'unique_together': "(['alumno', 'clase'],)", 'object_name': 'AlumnosClase'},
+            'alumno': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Alumno']"}),
             'clase': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'alumnos'", 'to': "orm['horarios.Clase']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'usuario': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Alumno']"})
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         'horarios.clase': {
-            'Meta': {'unique_together': "(['hora', 'salon', 'fecha'],)", 'object_name': 'Clase'},
+            'Meta': {'object_name': 'Clase'},
             'estatus': ('django.db.models.fields.CharField', [], {'default': "'activa'", 'max_length': '20'}),
             'fecha': ('django.db.models.fields.DateField', [], {}),
             'grupo': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'clases'", 'to': "orm['horarios.Grupo']"}),
