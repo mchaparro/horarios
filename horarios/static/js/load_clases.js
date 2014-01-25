@@ -12,8 +12,9 @@ function load_clases(fecha){
 			data: { 'fecha':fecha },
 			success: function(response) {
 				$.each(response, function(){
-				this.
-				var td=$('#')	
+				var td = $('.grupo-'+this.grupo+'-hora-'+this.hora);
+				td.append("<div class='" +this.salon+ "'>"+this.salon+" </div>");
+				console.log(td);
 				});				
 				console.log(response);
 			},
