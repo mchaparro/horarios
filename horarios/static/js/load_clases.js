@@ -3,17 +3,19 @@ $(document).ready(function(){
 	$('.week-day-picker td').click(function(){
 		
 		$('.week-day-picker td').removeClass('activo');
-		
+		$(this).toggleClass('activo');
 											
 	});
 	
 	$("tr:odd").addClass("odd");
 	
 	$('.escoger-fecha').click(function(){
-		fecha = $(this).attr('data-fecha');
-		$(this).toggleClass('activo');
-		$('*[data-id="saloncito"]').remove();
-		load_clases(fecha);
+		if (fecha != $(this).attr('data-fecha')){
+			fecha = $(this).attr('data-fecha');
+			
+			$('*[data-id="saloncito"]').remove();
+			load_clases(fecha);
+		}
 	});
 });
 
