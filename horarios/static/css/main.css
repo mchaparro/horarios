@@ -82,14 +82,16 @@
 	
 }
 
-
+.hora{
+	table-layout: fixed;
+}
 
 .hora td {
   text-align: center;
   vertical-align: central;
   border: 1px solid #000;
   border-collapse: collapse;
-  width:117px;
+  width:6%;
   padding:5px;
   font-weight:bold;
   
@@ -114,7 +116,7 @@
 	margin-top:1px;
 	margin-bottom:1px;
 	color:white;
-	font-size:0.9em;
+	font-size:0.8em;
 	padding-top:5px;
 	padding-bottom:5px;
 }
