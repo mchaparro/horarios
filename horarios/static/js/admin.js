@@ -1,24 +1,24 @@
 $(document).ready(function(){
-    load_clases(fecha);
-    $('.week-day-picker td').click(function(){
-        $('.week-day-picker td').removeClass('activo');
-        $(this).toggleClass('activo');
-                                            
-    });
-    
+//    load_clases(fecha);
+//    $('.week-day-picker td').click(function(){
+//        $('.week-day-picker td').removeClass('activo');
+//        $(this).toggleClass('activo');
+//                                            
+//    });
+//    
     salon = "PARIS";
     $('#saloncitos div').click(function(){
         salon=$(this).attr('data-salon');
         $('#saloncitos div').removeClass('salon-activo');
         $(this).toggleClass('salon-activo');
     });
-    $("tr:odd").addClass("odd");
-    
-    $('.escoger-fecha').click(function(){
-        $('#tabla-clases h1').text($(this).attr('data-fecha'));
-        fecha = $(this).attr('data-fecha');
-        load_clases(fecha);
-    });
+//    $("tr:odd").addClass("odd");
+//    
+//    $('.escoger-fecha').click(function(){
+//        $('#tabla-clases h1').text($(this).attr('data-fecha'));
+//        fecha = $(this).attr('data-fecha');
+//        load_clases(fecha);
+//    });
     
     
     $("td.clase").click(function(){

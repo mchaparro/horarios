@@ -47,9 +47,14 @@ def update_clase_json(request):
     
     clases_actuales = Clase.objects.filter(fecha=fecha,hora=hora,grupo=grupo)
     for clase in clases_actuales:
-            clase.estatus = 'cancelada'
-            clase.save()
-            response[clase]='cancelada'
+            if clase.alumnos.count() > 0:
+                clase.estatus = 'cancelada'
+                clase.save()
+                response[clase]='cancelada'
+            else:
+                response[clase]='borrada'
+                clase.delete()
+            
             
     for salon in salones:
         try:
