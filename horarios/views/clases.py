@@ -40,9 +40,11 @@ def guardar_alumno(request, alumno_id, clase_id):
         alumno = Alumno.objects.get(pk=alumno_id)
     except:
         return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
-    alumno_clase = AlumnosClase.objects.get_or_create(clase = clase, alumno = alumno)[0]
-    return {'nombre':str(alumno_clase.alumno.nombre),'id':str(alumno_clase.id),'matricula':str(alumno_clase.alumno.matricula ) }
-
+    try:
+        alumno_clase = AlumnosClase.objects.create(clase = clase, alumno = alumno)
+        return {'nombre':str(alumno_clase.alumno.nombre),'id':str(alumno_clase.id),'matricula':str(alumno_clase.alumno.matricula ), 'contador': str(clase.alumnos.count()) }
+    except:
+        return {'error':'error ya existe alumno'}
 @json_response 
 def update_clase_json(request):
     response = {}

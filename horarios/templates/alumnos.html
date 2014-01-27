@@ -25,8 +25,12 @@
             },
             data: { 'fecha':fecha },
             success: function(response) {
-                $('.alumnos-table tbody').append("<tr><td>10</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></td>></tr>");
-                                                 
+                if(response.error){
+                console.log('ya existe ese alumno')
+                }
+                else{
+                $('.alumnos-table tbody').append("<tr><td>"+response.contador+"</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></td>></tr>");
+                }                                 
                                                  
                                             
             },
