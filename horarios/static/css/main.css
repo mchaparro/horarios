@@ -198,7 +198,69 @@ tr.grupos td{
 #loading{
 	display:none;
 	position:absolute;
-	margin-left:35%;
 	margin-top:100px;
+	margin-left:35%;
 
+}
+.colorbox-link, .colorbox-link:hover{
+	text-decoration:none !important;	
+}
+
+.alumnos-table{
+	text-align:center;
+	font-size:0.9em;
+	font-weight:bold;			
+}
+
+.lista-alumnos{
+	font-size: 1.7em;
+	text-align: center;
+	margin-top: -23px;
+	margin-bottom: 27px;
+			
+}
+.alumnos-container{
+	background-color:white;
+	padding:7px;
+    border:3px solid #cccccc;
+    border-radius:15px;
+}
+
+.alumnos-save{
+	margin-right: 15px;
+	float: right; 
+	margin-top: 0px; 
+	font-size: 34px;
+}
+.multilingual{
+	color:#5B0104;		
+}
+.multilingual-bg{
+	background-color:#5B0104;
+}
+
+.impresora{
+	margin-right: -100px;
+	margin-top: 21px;
+	float: left;
+	margin-left: 52px;
+	font-size: 28px;
+	color: white;
+}
+
+.agregar-alumno{
+   margin-left: -76px;
+	margin-top: 16px;
+	margin-right: 36px;
+	float: right;
+}
+
+.select2-container .select2-choice {
+    display: block;
+    line-height:40px;
+    text-aling:center;
+    height: 40px;
+    padding: 0 0 0 8px;
+    overflow: hidden;
+    position: relative;
 }

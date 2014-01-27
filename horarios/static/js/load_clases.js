@@ -35,10 +35,23 @@ function load_clases(fecha){
 				$('*[data-id="saloncito"]').remove();
 				$.each(response, function(){
 				var td = $('.grupo-'+this.grupo+'-hora-'+this.hora);
-				td.append("<div data-id='saloncito' class='" +this.salon+ "'>"+this.salon+" "+this.cantidad_alumnos+" </div>").remove;
+				td.append("<a class='colorbox-link' href='/alumnos/clase/"+this.clase_id+"/'><div data-id='saloncito' class='" +this.salon+ "'>"+this.salon+" "+this.cantidad_alumnos+" </div></a>").remove;
 				console.log(td);
 				});				
 				console.log(response);
+					$('a.colorbox-link').colorbox({
+						trapFocus:false,
+						onComplete:function(){
+						$("#crud-table-title").text($("#cboxTitle").text());
+						$('.close-colorbox').click(function(){
+						$.colorbox.close();
+					});
+					
+				},
+				onCleanup:function(){
+					
+				}
+			});
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				//TODO Place proper error message 

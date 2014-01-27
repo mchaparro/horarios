@@ -33,6 +33,15 @@ def get_clases_json(request):
             });
         
     return lista_clases
+@json_response 
+def guardar_alumno(request, alumno_id, clase_id):
+    try:
+        clase = Clase.objects.get(pk=clase_id)
+        alumno = Alumno.objects.get(pk=alumno_id)
+    except:
+        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+    alumno_clase = AlumnosClase.objects.get_or_create(clase = clase, alumno = alumno)[0]
+    return {'nombre':str(alumno_clase.alumno.nombre),'id':str(alumno_clase.id),'matricula':str(alumno_clase.alumno.matricula ) }
 
 @json_response 
 def update_clase_json(request):
@@ -71,23 +80,12 @@ def update_clase_json(request):
     
     return response
 
-@json_response 
-def alumnos_clase(request, claseID):
+
+def alumnos_clase(request, clase_id):
     try:
-        clase = Clase.objects.get(pk=claseID)
+        clase = Clase.objects.get(pk=clase_id)
     except:
         return { 'error': 'error al acceder a la clase' }
-
-    lista_clases = []
-    alumnos = clase.alumnos.all()
-    for alumno in alumnos:
-        lista_clases.append({
-                'clase_id': str(clase.id),         
-                'alumno': str(alumno.alumno.nombre),
-                'alumno_id': str(alumno.alumno.id),
-                'matricula': str(alumno.alumno.matricula),
-                'cantidad_alumnos': str(clase.alumnos.all().count())
-            });
-        
-    return lista_clases
+    alumnos_globales = Alumno.objects.all()
+    return render(request, 'alumnos.html', {'alumnos': clase.alumnos.all(), 'alumnos_globales':alumnos_globales, 'clase':clase })
 

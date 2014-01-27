@@ -1,0 +1,98 @@
+<html>
+    <head>
+    <script>
+    var claseID = "{{ clase.id }}";
+     $(document).ready(function(){
+       $('#select-alumnos').select2({width:'500px',placeholder: "Selecciona un alumno"});                           
+                
+       $('#add-alumno').click(function(){
+         $('#seleccionar-alumnos').toggle();
+         $('#agregar-alumnos').toggle();
+       });
+                                  
+                                  
+       $('#guardar-alumno-select').click(function(){
+        var alumnoID = $('#select-alumnos').val();
+          $.ajax({
+            type:'POST',
+            url: '/guardar/alumno/'+alumnoID+'/clase/'+claseID+'/',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#loading').show();
+            },
+            complete: function(){
+                $('#loading').hide();
+            },
+            data: { 'fecha':fecha },
+            success: function(response) {
+                $('.alumnos-table tbody').append("<tr><td>10</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></td>></tr>");
+                                                 
+                                                 
+                                            
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //TODO Place proper error message 
+                   //alert('sucedio un error al intentar actualizar la clase');
+               }  
+        
+        });
+          
+                                                    
+       });                  
+    });
+    </script>
+    </head>
+    
+    <body>
+        <div class="container" style="width:850px;" >
+            <div class="jumbotron">
+            
+            <div class="lista-alumnos multilingual-bg" style="color:white; border-radius:15px; text-align:center; padding:0px;">
+                <span id="add-alumno" title="Agregar un nuevo alumno" style="cursor:pointer;" class="agregar-alumno glyphicon glyphicon-plus-sign"></span>
+                Alumnos {{ clase.grupo.nombre }} - {{ clase.hora.verbose_name }}
+                <span style="cursor:pointer;" class="impresora glyphicon glyphicon-print"></span>
+            </div>
+            <div id="seleccionar-alumnos" class="alumnos-container" style="padding:15px; margin-bottom:20px; padding:14px;">
+                Nombre:
+                <select id="select-alumnos">
+                    <option value=""></option>
+                    {% for alumno in alumnos_globales %}
+                    <option value="{{ alumno.id }}">{{ alumno.nombre }}
+                    {% endfor %}
+                </select>
+                <span id="guardar-alumno-select" style="cursor:pointer;" class="alumnos-save green glyphicon glyphicon-ok-sign"></span>
+            </div>
+            
+            
+            
+            <div id="agregar-alumnos" class="alumnos-container" style="display:none; margin-bottom:20px; padding:14px;">
+                Nombre: <input style="border-radius:10px; line-height:27px; width:290px; height:44px; padding:10px; text-align:center;"type="text" placeholder="Nombre del alumno"/>
+                <span style="margin-left:15px;">Matricula:</span> <input style="border-radius:10px; width:110px; line-height:27px; height:44px; padding:10px; text-align:center;" type="text" placeholder="Matricula"/>
+                <span style="cursor:pointer;" class="alumnos-save green glyphicon glyphicon-ok-sign"></span>
+            </div>
+            <div class="alumnos-container" style="padding:22px;">
+                <table class="alumnos-table table table-striped">
+                    <tr style="">
+                    
+                        <td  style="background-color:#5B0104 !important; color:white; text-align:center;">#</td>
+                        <td style="background-color:#5B0104 !important; color:white; text-align:center;">Matricula</td>
+                        <td style="background-color:#5B0104 !important; color:white; text-align:center;">Nombre</td>
+                        <td style="background-color:#5B0104 !important; color:white; text-align:center;"></td>
+                    </tr>
+                    {% for alumno in alumnos %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>  
+                          <td>{{ alumno.alumno.matricula }}</td>
+                          <td style="text-align:left;">{{ alumno.alumno.nombre }}</td>
+                          <td style="text-align:left;">   <span style="color:#ff262d; cursor:pointer;" class=" alumnos-save glyphicon glyphicon-remove-circle"></span></td>
+                        </tr>
+                    {% endfor %}
+                    
+                      
+                </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</html>
