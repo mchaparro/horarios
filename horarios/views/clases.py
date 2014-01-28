@@ -39,7 +39,7 @@ def guardar_alumno(request, alumno_id, clase_id):
         clase = Clase.objects.get(pk=clase_id)
         alumno = Alumno.objects.get(pk=alumno_id)
     except:
-        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+        return { 'error': 'no fue posible obtener las clases del dia' }
     try:
         alumno_clase = AlumnosClase.objects.create(clase = clase, alumno = alumno)
         return {'clase_id':str(clase.id) }
@@ -50,7 +50,7 @@ def borrar_alumno(request, alumno_id):
     try:
         clase_alumno = AlumnosClase.objects.get(pk=alumno_id)
     except:
-        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+        return { 'error': 'no fue posible obtener las clases del dia' }
     alumno = clase_alumno.id
     clase_alumno.delete()
     return {'alumno':str(clase_alumno.clase.id)}
@@ -106,7 +106,7 @@ def tabla_alumnos(request, clase_id):
     try:
         clase = Clase.objects.get(pk=clase_id)
     except:
-        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+        return { 'error': 'no fue posible obtener las clases del dia %s' }
     tabla_alumnos = ""
     
     alumnos = clase.alumnos.all()
@@ -121,5 +121,20 @@ def tabla_alumnos(request, clase_id):
                   </td>
                 </tr>
         """ % (count+1,alumno.alumno.matricula,alumno.alumno.nombre,alumno.id)
-    return {'tabla_alumnos':tabla_alumnos}
-    
+    return {'tabla_alumnos':tabla_alumnos, 'total':str(alumnos.count())}
+
+
+@json_response 
+def guardar_alumno_clase(request, clase_id):
+    try:
+        clase = Clase.objects.get(pk=clase_id)
+        alumno = Alumno.objects.get_or_create(nombre=(request.POST['nombre']).upper(), matricula=request.POST['matricula'])[0]
+        clasealumno = AlumnosClase.objects.get_or_create(clase=clase, alumno=alumno)
+    except:
+        return { 'error': 'no fue posible obtener las clases del dia' }
+   
+    return {'exito':'se guardo el alumno con exito'}   
+
+
+
+ 

@@ -35,7 +35,7 @@ function load_clases(fecha){
 				$('*[data-id="saloncito"]').remove();
 				$.each(response, function(){
 				var td = $('.grupo-'+this.grupo+'-hora-'+this.hora);
-				td.append("<a class='colorbox-link' href='/alumnos/clase/"+this.clase_id+"/'><div data-id='saloncito' class='" +this.salon+ "'>"+this.salon+" "+this.cantidad_alumnos+" </div></a>").remove;
+				td.append("<a class='colorbox-link' href='/alumnos/clase/"+this.clase_id+"/'><div data-id='saloncito' class='" +this.salon+ "'>"+this.salon+"<span id="+this.clase_id+"> "+this.cantidad_alumnos+"</span> </div></a>").remove;
 				console.log(td);
 				});				
 				console.log(response);
