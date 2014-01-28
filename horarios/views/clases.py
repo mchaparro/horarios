@@ -98,7 +98,7 @@ def alumnos_clase(request, clase_id):
         clase = Clase.objects.get(pk=clase_id)
     except:
         return { 'error': 'error al acceder a la clase' }
-    alumnos_globales = Alumno.objects.all()
+    alumnos_globales = Alumno.objects.all().exclude(clases__clase=clase)
     return render(request, 'alumnos.html', {'alumnos': clase.alumnos.all(), 'alumnos_globales':alumnos_globales, 'clase':clase })
 
 @json_response 
