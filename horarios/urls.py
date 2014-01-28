@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     (r'^alumnos/clase/(?P<clase_id>\d+)/$', alumnos_clase, {}, 'alumnos_clase'),  
     (r'^guardar/alumno/(?P<alumno_id>\d+)/clase/(?P<clase_id>\d+)/$', guardar_alumno, {}, 'guardar_alumno'),  
     (r'^borrar/alumno/(?P<alumno_id>\d+)/$', borrar_alumno, {}, 'borrar_alumno'),  
+    (r'^tabla/alumnos/clase/(?P<clase_id>\d+)/$', tabla_alumnos, {}, 'tabla_alumnos'),  
     (r'^admin/', include(admin.site.urls)),    
       
 )

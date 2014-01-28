@@ -42,7 +42,7 @@ def guardar_alumno(request, alumno_id, clase_id):
         return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
     try:
         alumno_clase = AlumnosClase.objects.create(clase = clase, alumno = alumno)
-        return {'nombre':str(alumno_clase.alumno.nombre),'id':str(alumno_clase.id),'matricula':str(alumno_clase.alumno.matricula ), 'contador': str(clase.alumnos.count()) }
+        return {'clase_id':str(clase.id) }
     except:
         return {'error':'error ya existe alumno'}
 @json_response 
@@ -53,7 +53,7 @@ def borrar_alumno(request, alumno_id):
         return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
     alumno = clase_alumno.id
     clase_alumno.delete()
-    return {'alumno':str(alumno)}
+    return {'alumno':str(clase_alumno.clase.id)}
     
 @json_response 
 def update_clase_json(request):
@@ -101,3 +101,25 @@ def alumnos_clase(request, clase_id):
     alumnos_globales = Alumno.objects.all()
     return render(request, 'alumnos.html', {'alumnos': clase.alumnos.all(), 'alumnos_globales':alumnos_globales, 'clase':clase })
 
+@json_response 
+def tabla_alumnos(request, clase_id):
+    try:
+        clase = Clase.objects.get(pk=clase_id)
+    except:
+        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+    tabla_alumnos = ""
+    
+    alumnos = clase.alumnos.all()
+    for count, alumno in enumerate(alumnos):
+        tabla_alumnos = tabla_alumnos + """
+                <tr>
+                  <td>%s</td>  
+                  <td>%s</td>
+                  <td style="text-align:left;">%s</td>
+                  <td style="text-align:left;"> 
+                  <span id="%s" style="color:#ff262d; cursor:pointer;" class="alumnos-remove alumnos-save glyphicon glyphicon-remove-circle"></span>
+                  </td>
+                </tr>
+        """ % (count+1,alumno.alumno.matricula,alumno.alumno.nombre,alumno.id)
+    return {'tabla_alumnos':tabla_alumnos}
+    

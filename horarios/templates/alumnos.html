@@ -2,7 +2,52 @@
     <head>
     <script>
     var claseID = "{{ clase.id }}";
+    
+function activate_delete_alumnos(){
+
+       $('.alumnos-remove').click(function(){
+        var alumnoID = $(this).attr('id');
+        $.ajax({
+         type:'POST',
+         url: '/borrar/alumno/'+alumnoID+'/',
+         dataType: 'json',
+         beforeSend: function() {
+         //    $('#loading').show();
+         },
+         complete: function(){
+           //  $('#loading').hide();
+         },
+         data: { },
+         success: function(response) {
+            $.post( "/tabla/alumnos/clase/"+claseID+"/", function( data ) {
+			  $('.alumnos-table tbody').html('');
+			  $('.alumnos-table tbody').html(data.tabla_alumnos);
+			         activate_delete_alumnos();               
+			        });
+             },
+             onCleanup:function(){
+                 
+          
+         },
+         error: function(XMLHttpRequest, textStatus, errorThrown) {
+             //TODO Place proper error message 
+                //alert('sucedio un error al intentar actualizar la clase');
+            }  
+     
+     });                    
+                            
+                        
+ });
+
+
+
+}
+    
+    
      $(document).ready(function(){
+     
+	   activate_delete_alumnos();              
+	     
        $('#select-alumnos').select2({width:'500px',placeholder: "Selecciona un alumno"});                           
                 
        $('#add-alumno').click(function(){
@@ -10,37 +55,6 @@
          $('#agregar-alumnos').toggle();
        });
                                   
-       
-       $('.alumnos-remove').click(function(){
-                               
-               $.ajax({
-                type:'POST',
-                url: '/borrar/alumno/'+$(this).attr('id')+'/',
-                dataType: 'json',
-                beforeSend: function() {
-                //    $('#loading').show();
-                },
-                complete: function(){
-                  //  $('#loading').hide();
-                },
-                data: { 'fecha':fecha },
-                success: function(response) {
-                   $('#'+response.alumno).parents('tr').fadeOut();                          
-                                             
-                    },
-                    onCleanup:function(){
-                        
-                 
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    //TODO Place proper error message 
-                       //alert('sucedio un error al intentar actualizar la clase');
-                   }  
-            
-            });                    
-                                   
-                               
-        });
        
                                   
        $('#guardar-alumno-select').click(function(){
@@ -55,16 +69,19 @@
             complete: function(){
                 $('#loading').hide();
             },
-            data: { 'fecha':fecha },
             success: function(response) {
                 if(response.error){
                 console.log('ya existe ese alumno')
                 }
                 else{
-                $('.alumnos-table tbody').append("<tr><td>"+response.contador+"</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><a href='/borrar/alumno/"+response.clase+"/'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></a></td>></tr>");
+                
+                $.post( "/tabla/alumnos/clase/"+claseID+"/", function( data ) {
+				  $('.alumnos-table tbody').html('');
+				  $('.alumnos-table tbody').html(data.tabla_alumnos);
+				   activate_delete_alumnos();       
+				});
+                
                 }                                 
-                                                 
-                                            
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 //TODO Place proper error message 
@@ -108,6 +125,7 @@
             </div>
             <div class="alumnos-container" style="padding:22px;">
                 <table class="alumnos-table table table-striped">
+                    <thead>
                     <tr style="">
                     
                         <td  style="background-color:#5B0104 !important; color:white; text-align:center;">#</td>
@@ -115,6 +133,8 @@
                         <td style="background-color:#5B0104 !important; color:white; text-align:center;">Nombre</td>
                         <td style="background-color:#5B0104 !important; color:white; text-align:center;"></td>
                     </tr>
+                    </thead>
+                    <tbody>
                     {% for alumno in alumnos %}
                         <tr>
                           <td>{{ forloop.counter }}</td>  
@@ -123,7 +143,7 @@
                           <td style="text-align:left;"> <span id="{{alumno.id}}" style="color:#ff262d; cursor:pointer;" class="alumnos-remove alumnos-save glyphicon glyphicon-remove-circle"></span></td>
                         </tr>
                     {% endfor %}
-                    
+                    </tbody>
                     
                       
                 </table>
