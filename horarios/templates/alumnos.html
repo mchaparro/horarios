@@ -10,6 +10,38 @@
          $('#agregar-alumnos').toggle();
        });
                                   
+       
+       $('.alumnos-remove').click(function(){
+                               
+               $.ajax({
+                type:'POST',
+                url: '/borrar/alumno/'+$(this).attr('id')+'/',
+                dataType: 'json',
+                beforeSend: function() {
+                //    $('#loading').show();
+                },
+                complete: function(){
+                  //  $('#loading').hide();
+                },
+                data: { 'fecha':fecha },
+                success: function(response) {
+                   $('#'+response.alumno).parents('tr').fadeOut();                          
+                                             
+                    },
+                    onCleanup:function(){
+                        
+                 
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    //TODO Place proper error message 
+                       //alert('sucedio un error al intentar actualizar la clase');
+                   }  
+            
+            });                    
+                                   
+                               
+        });
+       
                                   
        $('#guardar-alumno-select').click(function(){
         var alumnoID = $('#select-alumnos').val();
@@ -29,7 +61,7 @@
                 console.log('ya existe ese alumno')
                 }
                 else{
-                $('.alumnos-table tbody').append("<tr><td>"+response.contador+"</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></td>></tr>");
+                $('.alumnos-table tbody').append("<tr><td>"+response.contador+"</td><td>"+response.matricula+"</td><td style='text-align:left'>"+response.nombre+"</td><td style='text-align:left;'><a href='/borrar/alumno/"+response.clase+"/'><span style='color:#ff262d; cursor:pointer;' class=' alumnos-save glyphicon glyphicon-remove-circle'></span></a></td>></tr>");
                 }                                 
                                                  
                                             
@@ -88,9 +120,10 @@
                           <td>{{ forloop.counter }}</td>  
                           <td>{{ alumno.alumno.matricula }}</td>
                           <td style="text-align:left;">{{ alumno.alumno.nombre }}</td>
-                          <td style="text-align:left;">   <span style="color:#ff262d; cursor:pointer;" class=" alumnos-save glyphicon glyphicon-remove-circle"></span></td>
+                          <td style="text-align:left;"> <span id="{{alumno.id}}" style="color:#ff262d; cursor:pointer;" class="alumnos-remove alumnos-save glyphicon glyphicon-remove-circle"></span></td>
                         </tr>
                     {% endfor %}
+                    
                     
                       
                 </table>

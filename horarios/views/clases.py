@@ -46,6 +46,16 @@ def guardar_alumno(request, alumno_id, clase_id):
     except:
         return {'error':'error ya existe alumno'}
 @json_response 
+def borrar_alumno(request, alumno_id):
+    try:
+        clase_alumno = AlumnosClase.objects.get(pk=alumno_id)
+    except:
+        return { 'error': 'no fue posible obtener las clases del dia %s' % fecha }
+    alumno = clase_alumno.id
+    clase_alumno.delete()
+    return {'alumno':str(alumno)}
+    
+@json_response 
 def update_clase_json(request):
     response = {}
     salones = json2obj(request.POST['clases'])

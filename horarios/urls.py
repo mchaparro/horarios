@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^administrador/$', administrador, {}, 'administrador'),  
     (r'^alumnos/clase/(?P<clase_id>\d+)/$', alumnos_clase, {}, 'alumnos_clase'),  
     (r'^guardar/alumno/(?P<alumno_id>\d+)/clase/(?P<clase_id>\d+)/$', guardar_alumno, {}, 'guardar_alumno'),  
+    (r'^borrar/alumno/(?P<alumno_id>\d+)/$', borrar_alumno, {}, 'borrar_alumno'),  
     (r'^admin/', include(admin.site.urls)),    
       
 )

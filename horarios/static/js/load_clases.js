@@ -59,4 +59,6 @@ function load_clases(fecha){
 	   		}  
 		
 		});
+		
+		
 }
