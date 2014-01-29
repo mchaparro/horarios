@@ -140,7 +140,7 @@ function activate_delete_alumnos(total){
         <div class="container" style="width:850px;" >
             <div class="jumbotron">
             
-            <div id="muestra" class="lista-alumnos multilingual-bg" style="color:white; border-radius:15px; text-align:center; padding:0px;">
+            <div class="lista-alumnos multilingual-bg" style="color:white; border-radius:15px; text-align:center; padding:0px;">
                 <span id="add-alumno" title="Agregar un nuevo alumno" style="cursor:pointer;" class="agregar-alumno glyphicon glyphicon-plus-sign"></span>
                 Alumnos {{ clase.grupo.nombre }} - {{ clase.hora.verbose_name }}
                <a href="javascript:imprSelec('muestra')"><span style="cursor:pointer;" class="impresora glyphicon glyphicon-print"></span></a>
@@ -164,7 +164,7 @@ function activate_delete_alumnos(total){
                 <span title="Agregar nuevo alumno" id="guardar-new-alumno" style="cursor:pointer;" class="alumnos-save green glyphicon glyphicon-ok-sign"></span>
                 
             </div>
-            <div class="alumnos-container" style="padding:22px;">
+            <div id="muestra" class="alumnos-container" style="padding:22px;">
                 <table class="alumnos-table table table-striped">
                     <thead>
                     <tr style="">
