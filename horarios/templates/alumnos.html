@@ -1,5 +1,11 @@
 <html>
     <head>
+    
+    <script type="text/javascript">
+        function imprSelec(muestra)
+        {var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+    </script>
+    
     <script>
     var claseID = "{{ clase.id }}";
     
@@ -134,10 +140,10 @@ function activate_delete_alumnos(total){
         <div class="container" style="width:850px;" >
             <div class="jumbotron">
             
-            <div class="lista-alumnos multilingual-bg" style="color:white; border-radius:15px; text-align:center; padding:0px;">
+            <div id="muestra" class="lista-alumnos multilingual-bg" style="color:white; border-radius:15px; text-align:center; padding:0px;">
                 <span id="add-alumno" title="Agregar un nuevo alumno" style="cursor:pointer;" class="agregar-alumno glyphicon glyphicon-plus-sign"></span>
                 Alumnos {{ clase.grupo.nombre }} - {{ clase.hora.verbose_name }}
-                <span style="cursor:pointer;" class="impresora glyphicon glyphicon-print"></span>
+               <a href="javascript:imprSelec('muestra')"><span style="cursor:pointer;" class="impresora glyphicon glyphicon-print"></span></a>
             </div>
             <div id="seleccionar-alumnos" class="alumnos-container" style="padding:15px; margin-bottom:20px; padding:14px;">
                 Nombre:
